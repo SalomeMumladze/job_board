@@ -11,6 +11,6 @@ class JobBoard extends Model
     use HasFactory;
 
     public static array $experience = ['entry', 'intermediate', 'senior'];
-    public static array $category = ['IT', 'Sales', 'Finance', 'Marketing'];
+    public static array $category = ['IT', 'sales', 'finance', 'marketing'];
 
 }

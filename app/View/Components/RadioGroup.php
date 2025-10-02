@@ -18,6 +18,15 @@ class RadioGroup extends Component
        
     }
 
+    // ['entry'=>'Entry', 'senior'=>'Senio']
+    // This lets you create an array where you specifically pass the keys and then the values.
+    public function optionsWithLabels(): array
+    {
+        return array_is_list($this->options) ?
+            array_combine($this->options, $this->options)
+            : $this->options;
+    }
+
     /**
      * Get the view / contents that represent the component.
      */

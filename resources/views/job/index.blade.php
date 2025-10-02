@@ -19,11 +19,20 @@
         </div>
         <div> 
           <div class="mb-1 font-semibold">Experience</div>
-          <x-radio-group name='experience'  :options="\App\Models\JobBoard::$experience" />
+          
+          <x-radio-group name='experience'  :options="array_combine(
+            // change the first character of every string inside an array to an uppercase letter.
+                array_map('ucfirst', \App\Models\JobBoard::$experience),
+                \App\Models\JobBoard::$experience,
+            )"/>
         </div>
         <div> 
           <div class="mb-1 font-semibold">Category</div>
-          <x-radio-group name='category'  :options="\App\Models\JobBoard::$category" />
+           <x-radio-group name='experience'  :options="array_combine(
+            // change the first character of every string inside an array to an uppercase letter.
+                array_map('ucfirst', \App\Models\JobBoard::$category),
+                \App\Models\JobBoard::$category,
+            )"/>
         </div>
       </div>
       <button class="w-full">Filter</button>
