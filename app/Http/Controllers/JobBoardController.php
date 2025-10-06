@@ -37,7 +37,7 @@ class JobBoardController extends Controller
      */
     public function show(JobBoard $job)
     {
-       return view('job.show', ['job'=>$job->load('employer')]);
+       return view('job.show', ['job'=>$job->load('employer.jobs')]);
     }
 
     /**
