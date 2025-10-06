@@ -66,6 +66,7 @@ class JobBoardPolicy
 
     public function apply(User $user, JobBoard $job): bool
     {
-        return false;
+        // is user has not applied yet we only return true 
+        return !$job->hasUserApplied($user);
     }
 }
