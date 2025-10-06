@@ -26,6 +26,11 @@ class JobBoard extends Model
         return $this->belongsTo(Employer::class);
     }
 
+    public function jobApplications(): HasMany
+    {
+        return $this->hasMany(JobBoardApplication::class);
+    }
+
     public function scopeFilter(Builder|QueryBuilder $query, array $filters): Builder|QueryBuilder
     {
         return $query->when($filters['search'] ?? null, function ($query, $search) {
@@ -45,10 +50,5 @@ class JobBoard extends Model
         })->when($filters['category'] ?? null, function ($query, $category) {
             $query->where('category', $category);
         });
-    }
-
-    public function jobApplications(): HasMany
-    {
-        return $this->hasMany(jobApplications::class);
     }
 }

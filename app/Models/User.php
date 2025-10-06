@@ -51,6 +51,6 @@ class User extends Authenticatable
 
     public function jobApplications(): HasMany
     {
-        return $this->hasMany(jobApplications::class);
+        return $this->hasMany(JobBoardApplication::class);
     }
 }
