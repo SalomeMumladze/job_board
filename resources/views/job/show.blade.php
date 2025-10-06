@@ -5,10 +5,17 @@
     <p class="mb-4 text-sm text-slate-500">
       {!! nl2br(e($job->description)) !!}
     </p>
+
+    <x-link-button :href="route('job.application.create', $job)">
+      Apply
+    </x-link-button>
   </x-job-card>
 
   <x-card class="mb-4">
-    <h2 class="mb-4 text-lg font-medium">More {{$job->employer->company_name}} jobs</h2>
+    <h2 class="mb-4 text-lg font-medium">
+      More {{ $job->employer->company_name }} Jobs
+    </h2>
+
     <div class="text-sm text-slate-500">
       @foreach ($job->employer->jobs as $otherJob)
         <div class="mb-4 flex justify-between">
@@ -27,6 +34,6 @@
           </div>
         </div>
       @endforeach
-   </div>
+    </div>
   </x-card>
 </x-layout>
