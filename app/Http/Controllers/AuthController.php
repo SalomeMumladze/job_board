@@ -39,7 +39,7 @@ class AuthController extends Controller
         if(Auth::attempt($credentials, $remember)){
             return  redirect()->intended('/');
         }else{
-            return redirect()->back->with('error', 'Invalid Credentials');
+            return redirect()->back()->with('error', 'Invalid Credentials');
         }
     }
 
@@ -70,8 +70,20 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        Auth::logout();
+        
+        // will clear out all the data that's stored in the user session, which might include all the authenticated
+        // user information, and then it might be any flash data, all input data and more.
+
+        request()->session()->invalidate();
+
+        // And this would regenerate the csrf token for the for this session.
+        // So by regenerating this token, we basically make sure that all the forms that were loaded before the
+        // user signed out can't be successfully sent.
+        Request()->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
