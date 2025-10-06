@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\JobBoard;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -36,5 +38,17 @@ class DatabaseSeeder extends Seeder
             'name' => 'salome mumladze',
             'email' => 'salomeMumladze@example.com',
         ]);
+
+        foreach ($users as $user) {
+            $jobs = \App\Models\JobBoard::inRandomOrder()->take(rand(0, 4))->get();
+
+            foreach ($jobs as $job) {
+                \App\Models\JobBoardApplication::factory()->create([
+                    'job_board_id' => $job->id,
+                    'user_id' => $user->id
+                ]);
+
+            }
+        }
     }
 }

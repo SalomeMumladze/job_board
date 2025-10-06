@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class JobBoard extends Model
@@ -44,5 +45,10 @@ class JobBoard extends Model
         })->when($filters['category'] ?? null, function ($query, $category) {
             $query->where('category', $category);
         });
+    }
+
+    public function jobApplications(): HasMany
+    {
+        return $this->hasMany(jobApplications::class);
     }
 }
